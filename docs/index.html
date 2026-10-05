@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy (colombus): download</title>
+<meta name="description" content="Unofficial Android build of Happy with the newest Claude and Codex models, set up for happy.colombus.fun.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;600;750&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fog: #E7ECF0;
+    --paper: #F7F9FA;
+    --ink: #14212B;
+    --ink-soft: #4A5A66;
+    --line: #C9D3DA;
+    --tag: #F2CF4A;
+    --tag-ink: #1E1A08;
+    --link: #1F5FC4;
+    --mono: "Martian Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fog: #0E161C;
+      --paper: #16212A;
+      --ink: #E4EBF0;
+      --ink-soft: #9DADB9;
+      --line: #2A3944;
+      --tag: #E6C243;
+      --tag-ink: #1E1A08;
+      --link: #8DB6FF;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--fog);
+    color: var(--ink);
+    font: 17px/1.55 var(--sans);
+  }
+  a { color: var(--link); text-underline-offset: 3px; }
+  :focus-visible { outline: 3px solid var(--link); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 20px 16px 56px; }
+
+  /* top bar */
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .mark { font: 750 15px/1 var(--mono); letter-spacing: -0.02em; }
+  .mark span { font-weight: 400; color: var(--ink-soft); }
+  .pill {
+    font: 600 11px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.08em;
+    border: 1.5px solid var(--ink); border-radius: 999px; padding: 6px 10px; white-space: nowrap;
+  }
+
+  /* hero */
+  h1 {
+    font: 750 clamp(30px, 8.5vw, 44px)/1.08 var(--mono);
+    letter-spacing: -0.045em; margin: 40px 0 12px;
+  }
+  .lede { margin: 0; color: var(--ink-soft); max-width: 34em; }
+
+  /* signature: the build tag */
+  .tag {
+    position: relative; margin: 34px 0 0; padding: 30px 20px 18px;
+    background: var(--tag); color: var(--tag-ink);
+    border-radius: 6px 6px 0 0;
+    font: 400 12.5px/1.5 var(--mono);
+    transform-origin: 50% 0;
+    animation: settle 900ms cubic-bezier(.2,.8,.2,1) both;
+  }
+  .tag::before { /* punched hole */
+    content: ""; position: absolute; top: 12px; left: 50%; width: 14px; height: 14px; margin-left: -7px;
+    border-radius: 50%; background: var(--fog); box-shadow: inset 0 1px 2px rgba(0,0,0,.35);
+  }
+  .tag::after { /* perforation where the button tears off */
+    content: ""; position: absolute; left: 0; right: 0; bottom: -5px; height: 10px;
+    background: radial-gradient(circle at 5px 5px, var(--fog) 3.2px, transparent 3.6px) 0 0 / 14px 10px repeat-x;
+  }
+  @keyframes settle {
+    0% { transform: rotate(-3deg) translateY(-8px); opacity: 0; }
+    60% { transform: rotate(1deg); opacity: 1; }
+    100% { transform: rotate(0); }
+  }
+  @media (prefers-reduced-motion: reduce) { .tag { animation: none; } }
+  .tag-title { font-weight: 750; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 10px; }
+  .tag dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; margin: 0; }
+  .tag dt { opacity: .72; }
+  .tag dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+  .sha { display: flex; gap: 8px; align-items: baseline; }
+  .sha code { font: inherit; overflow-wrap: anywhere; }
+
+  .download {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 60px; padding: 14px 20px;
+    background: var(--ink); color: var(--fog);
+    font: 750 17px/1 var(--mono); letter-spacing: -0.02em; text-decoration: none;
+    border-radius: 0 0 10px 10px;
+  }
+  .download:hover { filter: brightness(1.15); }
+  .download svg { flex: none; }
+  .fine { font-size: 14px; color: var(--ink-soft); margin: 10px 2px 0; }
+
+  .note {
+    margin: 28px 0 0; padding: 14px 16px; border-left: 4px solid var(--ink);
+    background: var(--paper); border-radius: 0 8px 8px 0; font-size: 15.5px;
+  }
+
+  /* sections */
+  section { margin-top: 44px; }
+  h2 { font: 750 13px/1.2 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 14px; }
+  .diff { margin: 0; display: grid; gap: 14px; }
+  .diff div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .diff dt { font-weight: 650; }
+  .diff dd { margin: 4px 0 0; color: var(--ink-soft); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; padding: 0; list-style: none; }
+  .chips li {
+    font: 600 12px/1 var(--mono); padding: 7px 9px; border-radius: 6px;
+    border: 1px solid var(--line); color: var(--ink); background: var(--fog);
+  }
+  .chips li.new { background: var(--tag); color: var(--tag-ink); border-color: transparent; }
+  .chips-label { font: 600 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-soft); margin-top: 12px; }
+
+  ol.steps { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 12px; }
+  ol.steps > li { counter-increment: s; position: relative; padding-left: 44px; }
+  ol.steps > li::before {
+    content: counter(s); position: absolute; left: 0; top: 0;
+    width: 30px; height: 30px; display: grid; place-items: center;
+    font: 750 14px/1 var(--mono); border: 1.5px solid var(--ink); border-radius: 50%;
+  }
+  .ways { display: grid; gap: 12px; }
+  .way { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .way h3 { margin: 0 0 4px; font-size: 16px; }
+  .way p { margin: 0; color: var(--ink-soft); }
+  .path { font: 600 13px/1.6 var(--mono); color: var(--ink); }
+
+  .code { position: relative; margin: 10px 0 0; }
+  .code pre {
+    margin: 0; padding: 14px 76px 14px 14px; overflow-x: auto;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
+    font: 400 13px/1.6 var(--mono);
+  }
+  .copy {
+    position: absolute; top: 8px; right: 8px; min-width: 60px; min-height: 36px;
+    font: 600 12px/1 var(--mono); color: var(--ink); background: var(--fog);
+    border: 1px solid var(--line); border-radius: 8px; cursor: pointer;
+  }
+  .copy:active { transform: translateY(1px); }
+  footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-soft); }
+  footer p { margin: 6px 0; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="mark">happy <span>(colombus)</span></div>
+    <div class="pill">Unofficial build</div>
+  </header>
+
+  <main>
+    <h1>Happy, with the newest models.</h1>
+    <p class="lede">An Android build of Happy, the open-source app for running Claude Code and Codex from your phone, with Opus 5.5 and GPT-6.1 Sol in the menu and set up for <strong>happy.colombus.fun</strong>.</p>
+
+    <div class="tag" aria-label="Build details">
+      <p class="tag-title">Build details</p>
+      <dl>
+        <dt>App</dt><dd>Happy (colombus)</dd>
+        <dt>Package</dt><dd>fun.colombus.happy</dd>
+        <dt>Version</dt><dd>1.8.0 · Happy cli-1.2.5</dd>
+        <dt>Server</dt><dd>happy.colombus.fun</dd>
+        <dt>Device</dt><dd>Android 7+, 64-bit (arm64)</dd>
+        <dt>SHA-256</dt><dd class="sha"><code id="sha">{{SHA256}}</code></dd>
+      </dl>
+    </div>
+    <a class="download" href="https://github.com/TheDyXer/happy-colombus/releases/latest/download/happy-colombus.apk">
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 3h2v10.17l3.59-3.58L18 11l-6 6-6-6 1.41-1.41L11 13.17zM5 19h14v2H5z"/></svg>
+      Download APK
+    </a>
+    <p class="fine">About {{SIZE}} MB. Older versions are on the <a href="https://github.com/TheDyXer/happy-colombus/releases">releases page</a>.</p>
+
+    <p class="note"><strong>Not made by the Happy team.</strong> This is Happy's own source code with two small patches, built and signed separately. For the official app, use the Play Store.</p>
+
+    <section aria-labelledby="diff">
+      <h2 id="diff">What's different</h2>
+      <dl class="diff">
+        <div>
+          <dt>Newer models in the model menu</dt>
+          <dd>Highlighted ones aren't in the official app yet.
+            <p class="chips-label">Claude</p>
+            <ul class="chips">
+              <li>Fable 5.1</li><li>Fable 5</li><li class="new">Opus 5.5</li><li class="new">Opus 5.5 1M</li>
+              <li class="new">Sonnet 5.5</li><li class="new">Sonnet 5.5 1M</li><li>Opus 5</li><li>Opus 5 1M</li>
+              <li>Sonnet 5</li><li class="new">Haiku 4.5</li>
+            </ul>
+            <p class="chips-label">Codex</p>
+            <ul class="chips">
+              <li class="new">GPT-6.1 Sol</li><li>GPT-6 Astra</li><li class="new">GPT-6 Sol</li><li class="new">GPT-6 Luna</li>
+              <li>GPT-5.6 Sol</li><li>GPT-5.6 Terra</li><li>GPT-5.6 Luna</li><li class="new">GPT-5.5</li>
+            </ul>
+          </dd>
+        </div>
+        <div>
+          <dt>Uses happy.colombus.fun</dt>
+          <dd>Instead of Happy's hosted server. You can change it in Settings → Server.</dd>
+        </div>
+        <div>
+          <dt>Installs next to the official app</dt>
+          <dd>It has its own package name, so both can stay on the same phone.</dd>
+        </div>
+        <div>
+          <dt>No push notifications, no automatic updates</dt>
+          <dd>New versions are posted here. Install them over the old one; your account stays.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section aria-labelledby="install">
+      <h2 id="install">Install</h2>
+      <ol class="steps">
+        <li>Tap <strong>Download APK</strong> on your phone.</li>
+        <li>Open the downloaded file. If Android asks, allow your browser to install apps.</li>
+        <li>Open <strong>Happy (colombus)</strong> and log in.</li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="login">
+      <h2 id="login">Log in</h2>
+      <p class="lede" style="margin-bottom:14px">Accounts on happy.colombus.fun are separate from accounts on Happy's hosted server. Pick the case that fits:</p>
+      <div class="ways">
+        <div class="way">
+          <h3>First time on this server</h3>
+          <p>Tap <strong>Create account</strong>.</p>
+        </div>
+        <div class="way">
+          <h3>Already logged in on another device</h3>
+          <p>On that device: <span class="path">Settings → Account → Link New Device</span>, then scan the code this app shows.</p>
+        </div>
+        <div class="way">
+          <h3>Same phone as the official app</h3>
+          <p>In the official app: <span class="path">Settings → Account → Secret Key</span> (tap to copy). In this app: <span class="path">Restore an existing account → Use a secret key instead</span>, then paste.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="computer">
+      <h2 id="computer">Connect your computer</h2>
+      <ol class="steps">
+        <li>Install the Happy command-line tool on the computer that runs Claude Code or Codex:
+          <div class="code"><pre><code>npm install -g happy</code></pre><button class="copy" type="button">Copy</button></div>
+        </li>
+        <li>Create <span class="path">~/.happy/settings.json</span> (Windows: <span class="path">%USERPROFILE%\.happy\settings.json</span>) with:
+          <div class="code"><pre><code>{ "serverUrl": "https://happy.colombus.fun" }</code></pre><button class="copy" type="button">Copy</button></div>
+        </li>
+        <li>Run <span class="path">happy</span>, choose <strong>Mobile App</strong> and scan the code with this app.</li>
+      </ol>
+      <p class="fine">A model only works if the Claude Code or Codex on your computer knows it, so keep them updated.</p>
+    </section>
+
+    <section aria-labelledby="web">
+      <h2 id="web">In a browser</h2>
+      <p style="margin:0">The same Happy, with the same model menus: <a href="https://happyweb.colombus.fun">happyweb.colombus.fun</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Source, patches and build steps: <a href="https://github.com/TheDyXer/happy-colombus">github.com/TheDyXer/happy-colombus</a></p>
+    <p>Based on <a href="https://github.com/slopus/happy">Happy</a> by Happy Coder Contributors. MIT license.</p>
+  </footer>
+</div>
+<div class="sr" aria-live="polite" id="live"></div>
+<script>
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.previousElementSibling.textContent;
+      var done = function () {
+        btn.textContent = 'Copied';
+        document.getElementById('live').textContent = 'Copied to clipboard';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+      };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done, function () { btn.textContent = 'Select it'; });
+      } else { btn.textContent = 'Select it'; }
+    });
+  });
+</script>
+</body>
+</html>
