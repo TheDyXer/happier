@@ -1,10 +1,10 @@
-# Happy (colombus): unofficial Android build of Happy
+# Happier: unofficial Android build of Happy
 
 An **unofficial** build of [Happy](https://github.com/slopus/happy), the open-source mobile client for
 Claude Code and Codex. It is built from Happy's own source code plus two small patches. It is **not made or
 endorsed by the Happy team**.
 
-**Download:** <https://thedyxer.github.io/happy-colombus/> (or the [latest release](https://github.com/TheDyXer/happy-colombus/releases/latest))
+**Download:** <https://thedyxer.github.io/happier/> (or the [latest release](https://github.com/TheDyXer/happier/releases/latest))
 
 ## What's different from the official app
 
@@ -13,7 +13,7 @@ endorsed by the Happy team**.
   GPT-5.6. ([patch 0001](patches/0001-app-newer-models.patch))
 - **Uses the server `https://happy.colombus.fun` by default** instead of Happy's hosted server. You can
   change it in Settings → Server.
-- **Installs next to the official app** (its own app ID `fun.colombus.happy`), named "Happy (colombus)".
+- **Installs next to the official app** (its own app ID `fun.colombus.happier`), named "Happier".
 - **No push notifications** and **no automatic over-the-air updates**. New versions are published here.
   ([patch 0002](patches/0002-app-own-android-variant.patch))
 
@@ -65,7 +65,7 @@ React Native 0.83.1 (SDK 36, build-tools 36.0.0, NDK 27.1.12297006, JDK 17).
 git clone --depth 1 --branch cli-1.2.5 https://github.com/slopus/happy.git src
 git -C src apply "$PWD"/patches/*.patch     # run from a folder that contains patches/ and android/
 sudo ./android/build-apk.sh --new-key       # first build; later builds without --new-key
-                                            # → android/out/happy-colombus.apk
+                                            # → android/out/happier.apk
 ```
 
 `--new-key` creates your own signing key in `android-keys/`. Back it up somewhere private: Android only installs
