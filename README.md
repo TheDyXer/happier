@@ -56,6 +56,16 @@ straight to Claude Code / Codex, so a model only works if your installed Claude 
 
 There is also a browser version with the same model menus: <https://happyweb.colombus.fun>.
 
+## Updates
+
+- **Obtainium** (recommended): install [Obtainium](https://github.com/ImranR98/Obtainium/releases/latest),
+  tap **Add app**, paste `https://github.com/TheDyXer/happier` and install Happier through it. Installed that
+  way it updates in the background; an app first installed from the browser still gets found, but each update
+  needs a tap.
+- Or download the newest APK from the page and install it over the old one; the account stays.
+
+Versions look like `1.8.0+3`: the Happy app version, then this project's release number, which only goes up.
+
 ## Build it yourself
 
 The build runs in Docker (Linux host) with `reactnativecommunity/react-native-android:v20.1`, which matches
@@ -71,6 +81,9 @@ sudo ./android/build-apk.sh --new-key       # first build; later builds without 
 `--new-key` creates your own signing key in `android-keys/`. Back it up somewhere private: Android only installs
 an update over an app signed with the same key. Without `--new-key` the script stops if the key is missing,
 so a wrong folder or a lost key never produces an APK that can't update.
+
+`HAPPIER_BUILD=N sudo -E ./android/build-apk.sh` builds release N (version `X.Y.Z+N`, versionCode `100+N`);
+without it the version stays `X.Y.Z` / `1`.
 
 ## License
 

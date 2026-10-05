@@ -169,18 +169,18 @@
       <dl>
         <dt>App</dt><dd>Happier</dd>
         <dt>Package</dt><dd>fun.colombus.happier</dd>
-        <dt>Version</dt><dd>1.8.0 · Happy cli-1.2.5</dd>
-        <dt>Released</dt><dd>not released yet</dd>
+        <dt>Version</dt><dd>{{VERSION}} · Happy {{HAPPY_TAG}}</dd>
+        <dt>Released</dt><dd>{{DATE}}</dd>
         <dt>Server</dt><dd>happy.colombus.fun</dd>
         <dt>Device</dt><dd>Android 7+, 64-bit (arm64)</dd>
-        <dt>SHA-256</dt><dd class="sha"><code id="sha">(published with the first release)</code></dd>
+        <dt>SHA-256</dt><dd class="sha"><code id="sha">{{SHA256}}</code></dd>
       </dl>
     </div>
     <a class="download" href="https://github.com/TheDyXer/happier/releases/latest/download/happier.apk">
       <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11 3h2v10.17l3.59-3.58L18 11l-6 6-6-6 1.41-1.41L11 13.17zM5 19h14v2H5z"/></svg>
       Download APK
     </a>
-    <p class="fine">About 114 MB. Older versions are on the <a href="https://github.com/TheDyXer/happier/releases">releases page</a>.</p>
+    <p class="fine">About {{SIZE}} MB. Older versions are on the <a href="https://github.com/TheDyXer/happier/releases">releases page</a>.</p>
 
     <p class="note"><strong>Not made by the Happy team.</strong> This is Happy's own source code with two small patches, built and signed separately. For the official app, use the Play Store.</p>
 
