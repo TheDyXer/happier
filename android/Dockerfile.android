@@ -46,6 +46,8 @@ RUN npx expo prebuild --platform android --no-install --clean
 # step pass a throwaway key. Worker count / heap per host.
 ARG GRADLE_WORKERS=3
 ARG GRADLE_XMX=3g
+# Phones only need arm64-v8a. "arm64-v8a,x86_64" makes a test build that also runs in an x86_64 emulator.
+ARG RN_ARCHS=arm64-v8a
 # A new value forces a fresh Gradle compile; earlier steps stay cached.
 ARG CACHE_BUST=
 RUN --mount=type=secret,id=keystore,required=true \
@@ -53,7 +55,7 @@ RUN --mount=type=secret,id=keystore,required=true \
     cp /run/secrets/keystore android/app/debug.keystore \
  && cd android \
  && ./gradlew assembleRelease \
-      -PreactNativeArchitectures=arm64-v8a \
+      -PreactNativeArchitectures=${RN_ARCHS} \
       -Dorg.gradle.jvmargs="-Xmx${GRADLE_XMX} -XX:MaxMetaspaceSize=1g" \
       --max-workers=${GRADLE_WORKERS} --no-daemon --stacktrace \
  && rm -f app/debug.keystore \
