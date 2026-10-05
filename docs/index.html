@@ -236,7 +236,7 @@
         </div>
         <div class="way">
           <h3>Already installed from the browser</h3>
-          <p>Obtainium still finds new versions, but each update needs a tap. The app also tells you when a new version is out.</p>
+          <p>Obtainium still finds new versions, but each update needs a tap.</p>
         </div>
       </div>
     </section>
