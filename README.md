@@ -8,8 +8,8 @@ endorsed by the Happy team**.
 
 ## What's different from the official app
 
-- **Newer models in the model menu.** Claude: Opus 5.5 (+1M), Sonnet 5.5 (+1M), Haiku 4.5, next to Fable 5.1,
-  Fable 5, Opus 5 and Sonnet 5. Codex: GPT-6.1 Sol, GPT-6 Sol, GPT-6 Luna, GPT-5.5, next to GPT-6 Astra and
+- **Newer models in the model menu.** Claude: Opus 5.5 (+1M), Sonnet 5.5 (+1M), Haiku 5.5 (+1M), Haiku 4.5, next to
+  Fable 5.1, Fable 5, Opus 5 and Sonnet 5. Codex: GPT-6.1 Sol, GPT-6 Sol, GPT-6 Luna, GPT-5.5, next to GPT-6 Astra and
   GPT-5.6. ([patch 0001](patches/0001-app-newer-models.patch))
 - **Uses the server `https://happy.colombus.fun` by default** instead of Happy's hosted server. You can
   change it in Settings → Server.

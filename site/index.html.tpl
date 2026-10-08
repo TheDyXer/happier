@@ -194,7 +194,7 @@
             <ul class="chips">
               <li>Fable 5.1</li><li>Fable 5</li><li class="new">Opus 5.5</li><li class="new">Opus 5.5 1M</li>
               <li class="new">Sonnet 5.5</li><li class="new">Sonnet 5.5 1M</li><li>Opus 5</li><li>Opus 5 1M</li>
-              <li>Sonnet 5</li><li class="new">Haiku 4.5</li>
+              <li>Sonnet 5</li><li class="new">Haiku 5.5</li><li class="new">Haiku 5.5 1M</li><li class="new">Haiku 4.5</li>
             </ul>
             <p class="chips-label">Codex</p>
             <ul class="chips">

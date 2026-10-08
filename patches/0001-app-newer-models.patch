@@ -1,8 +1,8 @@
 diff --git a/packages/happy-app/sources/components/modelModeOptions.ts b/packages/happy-app/sources/components/modelModeOptions.ts
-index 4b47590..6b26621 100644
+index 4b47590..0a43768 100644
 --- a/packages/happy-app/sources/components/modelModeOptions.ts
 +++ b/packages/happy-app/sources/components/modelModeOptions.ts
-@@ -170,18 +170,27 @@ export function getClaudeModelModes(): ModelMode[] {
+@@ -170,18 +170,29 @@ export function getClaudeModelModes(): ModelMode[] {
      return [
          { key: 'claude-fable-5-1', name: 'Fable 5.1', description: '1M context', providerId: 'anthropic', providerName: 'Anthropic' },
          { key: 'claude-fable-5', name: 'Fable 5', description: null, providerId: 'anthropic', providerName: 'Anthropic' },
@@ -13,7 +13,9 @@ index 4b47590..6b26621 100644
          { key: 'claude-opus-5', name: 'Opus 5', description: null, providerId: 'anthropic', providerName: 'Anthropic' },
          { key: 'claude-opus-5[1m]', name: 'Opus 5 [1M]', description: '1M context', providerId: 'anthropic', providerName: 'Anthropic' },
          { key: 'claude-sonnet-5', name: 'Sonnet 5', description: null, providerId: 'anthropic', providerName: 'Anthropic' },
-+        { key: 'claude-haiku-4-5', name: 'Haiku 4.5', description: 'fastest', providerId: 'anthropic', providerName: 'Anthropic' },
++        { key: 'claude-haiku-5-5', name: 'Haiku 5.5', description: 'fastest', providerId: 'anthropic', providerName: 'Anthropic' },
++        { key: 'claude-haiku-5-5[1m]', name: 'Haiku 5.5 [1M]', description: '1M context', providerId: 'anthropic', providerName: 'Anthropic' },
++        { key: 'claude-haiku-4-5', name: 'Haiku 4.5', description: null, providerId: 'anthropic', providerName: 'Anthropic' },
      ];
  }
  
@@ -30,7 +32,7 @@ index 4b47590..6b26621 100644
      ];
  }
  
-@@ -534,10 +543,14 @@ const AGY_EFFORTS_BY_MODEL: Record<string, readonly string[]> = {
+@@ -534,10 +545,14 @@ const AGY_EFFORTS_BY_MODEL: Record<string, readonly string[]> = {
  // than one more notch — but it is a level these models accept, so the picker
  // offers it rather than deciding for you.
  const CODEX_EFFORTS_BY_MODEL: Record<string, readonly string[]> = {
